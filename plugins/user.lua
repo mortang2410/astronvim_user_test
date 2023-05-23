@@ -1,11 +1,4 @@
 return {
-        "simrat39/rust-tools.nvim", -- add lsp plugin
-        {
-                "williamboman/mason-lspconfig.nvim",
-                opts = {
-                        ensure_installed = { "rust_analyzer" },
-                },
-        },
         {
                 "kevinhwang91/nvim-bqf",
                 event = { "BufRead", "BufNew" },
@@ -49,7 +42,8 @@ return {
                 event = "BufRead",
                 config = function()
                         require("hop").setup()
-                        vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+                        vim.api.nvim_set_keymap("v", "s", "<cmd>HopChar1<cr>", { silent = true })
+                        vim.api.nvim_set_keymap("n", "s", ":HopChar1<cr>", { silent = true })
                         vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
                 end,
         },
@@ -81,7 +75,66 @@ return {
                 "catppuccin/nvim",
                 name = "catppuccin",
                 config = function()
-                        require("catppuccin").setup {}
+                        require("catppuccin").setup({
+                                flavour = "mocha", -- latte, frappe, macchiato, mocha
+                                background = {
+                                        -- :h background
+                                        light = "latte",
+                                        dark = "mocha",
+                                },
+                                transparent_background = true,
+                                show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+                                term_colors = false,
+                                dim_inactive = {
+                                        enabled = false,
+                                        shade = "dark",
+                                        percentage = 0.15,
+                                },
+                                no_italic = false,    -- Force no italic
+                                no_bold = false,      -- Force no bold
+                                no_underline = false, -- Force no underline
+                                styles = {
+                                        comments = { "italic" },
+                                        conditionals = { "italic" },
+                                        loops = {},
+                                        functions = {},
+                                        keywords = {},
+                                        strings = {},
+                                        variables = {},
+                                        numbers = {},
+                                        booleans = {},
+                                        properties = {},
+                                        types = {},
+                                        operators = {},
+                                },
+                                color_overrides = {},
+                                custom_highlights = {},
+                                integrations = {
+                                        cmp = true,
+                                        gitsigns = true,
+                                        nvimtree = true,
+                                        telescope = true,
+                                        notify = false,
+                                        mini = false,
+                                        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+                                },
+                        })
                 end,
+        },
+        {
+                "lambdalisue/suda.vim",
+                lazy = false,
+        },
+        {
+                "nvim-pack/nvim-spectre",
+                lazy = false,
+        },
+        {
+                "junegunn/fzf",
+                lazy = false,
+        },
+        {
+                "junegunn/fzf.vim",
+                lazy = false,
         },
 }

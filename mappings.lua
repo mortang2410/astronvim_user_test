@@ -19,8 +19,14 @@ return {
       end,
       desc = "Pick to close",
     },
+    -- for sane movements within wrapped text
+    ["<Down>"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" },
+    ["<Up>"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" },
     ["gn"] = { ":bn<cr>", desc = "Next buffer" },
     ["<leader>bn"] = { ":bn<cr>", desc = "Next buffer" },
+    ["<leader>n"] = { ":NnnPicker<cr>", desc = "Pick file with nnn" },
+    ["<leader>fc"] = { ":Commands<cr>", desc = "All ex commands with fzf" },
+    ["<leader>fw"] = { ":Lines<cr>", desc = "Find word in buffers with fzf.vim" },
     ["gp"] = { ":bp<cr>", desc = "Previous buffer" },
     ["<leader>bp"] = { ":bp<cr>", desc = "Previous buffer" },
     -- tables with the `name` key will be registered with which-key if it's installed
@@ -32,5 +38,9 @@ return {
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+  },
+  i = {
+    ["<Down>"] = { "<C-o>gj", desc = "Move cursor down" },
+    ["<Up>"] = { "<C-o>gk", desc = "Move cursor up" },
   },
 }
