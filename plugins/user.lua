@@ -109,7 +109,29 @@ return {
                 end
         },
         {
+                "iurimateus/luasnip-latex-snippets.nvim",
+                dependencies = {
+                        "L3MON4D3/LuaSnip",
+                        "lervag/vimtex",
+                },
+                ft = { "tex", "markdown" },
+                config = function()
+                        require 'luasnip-latex-snippets'.setup()
+                        -- or setup({ use_treesitter = true })
+                end,
+        },
+        {
                 "lervag/vimtex",
                 lazy = false,
         },
+        {
+                -- full file path in status line
+                "rebelot/heirline.nvim",
+                config = function(plugin, opts)
+                        local status = require "astronvim.utils.status"
+                        opts.statusline[4] = status.component.file_info { filename = { modify = ":p" } }
+                        require("plugins.configs.heirline")(plugin, opts)
+                end
+        },
+
 }

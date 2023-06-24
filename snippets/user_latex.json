@@ -1,0 +1,19 @@
+{
+  "\\begin{}…\\end{}": {
+    "prefix": "begin",
+    "body": [
+      "\\\\begin{${1:env}}",
+      "\t${1/(enumerate|itemize|list)|(description)|(.*)/${1:+\\item }${2:+\\itemize }${3:+ }/}$0",
+      "\\\\end{${1:env}}"
+    ],
+    "description": "Fixed Begin - End"
+  },
+  "color conditional": {
+    "prefix": "_hex",
+    "body": [
+      "let color = '${1};",
+      "let hex = '${1/(white)|(black)|(red)/${1:+#fff}${2:+#000}${3:+#f00}/}';"
+    ],
+    "description": "conditional color"
+  }
+}
